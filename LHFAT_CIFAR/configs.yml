@@ -1,0 +1,63 @@
+TRAIN:
+    # Number of training epochs
+    epochs: 192
+
+    # Architecture name, see pytorch models package for
+    # a list of possible architectures
+    arch: 'wideresnet_34'
+    # total trainable layer block for WRN_34 is 18
+    n_layer: 18
+
+    # Starting epoch
+    start_epoch: 0
+
+    # SGD paramters
+    lr: 0.1
+    momentum: 0.9
+    weight_decay: 0.0002
+
+    lr_epoch_schedule: !!python/tuple [[0,1],[12,0.5],[18,0.25]]
+
+    # Print frequency, is used for both training and testing
+    print_freq: 100
+
+    # Dataset mean and std used for data normalization
+    mean: !!python/tuple [0.4914, 0.4822, 0.4465]
+    std: !!python/tuple [0.2023, 0.1994, 0.2010]
+
+    CIFAR100_mean: !!python/tuple [0.5071, 0.4865, 0.4409]
+    CIFAR100_std: !!python/tuple [0.2673, 0.2564, 0.2762]
+
+ADV:
+    # FGSM parameters during training
+    clip_eps: 8.0
+    fgsm_step: 2.0
+
+    # Number of repeats for free adversarial training
+    n_repeats: 8
+
+    # PGD attack parameters used during validation
+    # the same clip_eps as above is used for PGD
+    pgd_attack:
+    - !!python/tuple [20, 0.00392156862] #[10 iters, 1.0/255.0]
+    - !!python/tuple [100, 0.00392156862] #[50 iters, 1.0/255.0]
+#    - !!python/tuple [20, 0.00784313725] #[10 iters, 1.0/255.0]
+#    - !!python/tuple [100, 0.00784313725] #[50 iters, 1.0/255.0]
+
+DATA:
+    # Number of data workers
+    workers: 2
+
+    # Training batch size
+    batch_size: 128
+    # Image Size
+    img_size: 32
+
+    # Crop Size for data augmentation
+#    crop_size: 224
+    crop_size: 32
+
+    # Color value range
+    max_color_value: 255.0
+
+    
