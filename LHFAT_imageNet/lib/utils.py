@@ -49,11 +49,13 @@ class AverageMeter(object):
         self.avg = self.sum / self.count
 
 
-def adjust_learning_rate(initial_lr, optimizer, epoch, n_repeats):
+def adjust_lr_coefficient(epoch):
     """Sets the learning rate to the initial LR decayed by 10 every 30 epochs"""
-    lr = initial_lr * (0.1 ** (epoch // int(math.ceil(30. / n_repeats))))
-    for param_group in optimizer.param_groups:
-        param_group['lr'] = lr
+    # lr_coefficient = 0.1 ** (epoch // int(math.ceil(30. / configs.ADV.n_repeats)))
+    lr_coefficient = 0.5 ** (epoch // int(math.ceil(30. / configs.ADV.n_repeats)))
+    # if epoch % int(math.ceil(30. / configs.ADV.n_repeats))==0:
+    print("Learning rate decay. lr_coefficient: %s" % lr_coefficient)
+    return lr_coefficient
 
 
 def fgsm(gradz, step_size):
