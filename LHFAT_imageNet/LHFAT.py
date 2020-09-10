@@ -324,7 +324,7 @@ def train(train_loader, model, criterion, optimizer, epoch, n_layer):
     writer.add_scalar('data/Train_loss', losses.avg, epoch)
     writer.add_scalar('data/Train_acc', top1.avg, epoch)
 
-    # 偶数epoch结尾开始计算，奇数epoch起始adapt
+    # calculate layer_ratio at the end of even epoch
     if epoch != configs.TRAIN.epochs - 1 and epoch % 2 == 0:
         layer_ratio = calculate_layer_ratio(gradout_list, grad_iter_abs)
 
