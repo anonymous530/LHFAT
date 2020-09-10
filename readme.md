@@ -1,4 +1,4 @@
-# Code for LHFAT.
+# LHFAT.
 *A repository that implements LHFAT.
 
 ## What is in this repository? 
