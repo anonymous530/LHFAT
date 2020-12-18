@@ -129,13 +129,13 @@ def main():
     ])
 
     # trainset
-    trainset = torchvision.datasets.CIFAR100(root='./data', train=True, transform=transform_train, download=False)
+    trainset = torchvision.datasets.CIFAR100(root='./data', train=True, transform=transform_train, download=True)
 
     train_loader = torch.utils.data.DataLoader(dataset=trainset, batch_size=configs.DATA.batch_size, shuffle=True,
                                                num_workers=configs.DATA.workers)
 
     # testnset
-    testset = torchvision.datasets.CIFAR100(root='./data', train=False, transform=transform_test, download=False)
+    testset = torchvision.datasets.CIFAR100(root='./data', train=False, transform=transform_test, download=True)
 
     val_loader = torch.utils.data.DataLoader(dataset=testset, batch_size=configs.DATA.batch_size, shuffle=False,
                                              num_workers=configs.DATA.workers)
