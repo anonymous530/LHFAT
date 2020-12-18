@@ -167,6 +167,8 @@ class WideResNet(nn.Module):
                     m.lr_ratio = scale_fn[self.how_scale](
                             self.t_0 + (1 - self.t_0) * float(m.layer_index) / self.layer_index)
 
+                m.lr = 0.1 * m.lr_ratio if self.scale_lr else 1e-1
+
     def forward(self, x):
         out = self.conv1(x)
         out = self.block1(out)
